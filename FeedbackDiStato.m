@@ -10,6 +10,7 @@ C = [1 0 0; 0 1 0; 0 0 1]; %scelta da noi
 D = [0 0 0]'; %scelta da noi
 x0 = [1 1 1]';
 
+
 ss = ss(A,B,C,D);
 tf = tf(ss);
 
