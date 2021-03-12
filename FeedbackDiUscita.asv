@@ -28,10 +28,10 @@ L = ss(A,B,Kc,0);
 
 Bbar = B;
 Rf = 1;
-Qf = s * 1;
+Qf = s *1;
 Kf = lqe(A,Bbar,C,Qf,Rf);
 
-Ak = A - (Kf * C) - (B * Kc);
+Ak = A-Kf*C-B*Kc;
 
 K = ss(Ak,Kf,-Kc,0);
 L0 = Ps * K;
