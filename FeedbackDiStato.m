@@ -13,8 +13,8 @@ x0 = [1 1 1]';
 
 
 ss = ss(A,B,C,D);
-tf = tf(ss);
-tzero = tzero(ss);
+P = tf(ss);
+
 
 G = [1 0 0; 0 gamma*1 0];
 H = [0 0]';
