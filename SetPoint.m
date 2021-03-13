@@ -27,3 +27,17 @@ inversa = inv([A B; G H]);
 inversa = inversa * [0 0 0 1]';
 F = inversa(1:3);
 N = inversa(end);
+
+%% Output Feedback con SetPoint
+L = ss(A,B,Kc,0); %Sistema con Feedback di stato
+
+Bbar = B;
+Rf = 1;
+Qf = s * 1;
+Kf = lqe(A,Bbar,C,Qf,Rf);
+
+Ak = A-Kf*C-B*Kc;
+
+K = ss(Ak,Kf,-Kc,0); %Sistema con output feedback
+L0 = Ps * K;
+L0 = minreal(L0);
