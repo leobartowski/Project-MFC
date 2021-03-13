@@ -23,3 +23,7 @@ Rc = H'* H + rho;
 Kc = lqr(A,B,Qc,Rc);
 L = ss(A,B,Kc,0); %Sistema con Feedback di stato
 
+inversa = inv([A B; G H]);
+inversa = inversa * [0 0 0 1]';
+F = inversa(1:3);
+N = inversa(end);
