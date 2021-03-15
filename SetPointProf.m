@@ -17,7 +17,7 @@ Q = G' *1* G;
 R = 1;
 x0 = [0 0 ]';
 
-% Kc = lqr(A,B,C'*C,R); il prof aveva messo Q poi si trovava uno 0 in kc e ha
+% Kc = lqr(A,B,C'*C,R); il prof aveva messo Q poi si trovava uno 0 in Kc e ha
 % cambiato mettendo C'* C al posto di Q
 Kc = lqr(A,B,C'*C,R);
 L = ss(A,B,Kc,0); %Sistema con Feedback di stato

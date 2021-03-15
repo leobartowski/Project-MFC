@@ -3,14 +3,14 @@ close all
 
 gamma = 1;
 rho = 1;
-s = 10; % sigma
+s = 1000000; % sigma
 
 A = [0 1 0; 0 -.875 -20; 0 0 -50];
 B = [0 0 50]';
 C = [1 0 0]; %scelta da noi
 D = 0; %scelta da noi
 
-x0 = [1 1 1];
+x0 = [pi/2 0 0];
 
 Ps = ss(A,B,C,D); % Sistema di partenza
 P = tf(Ps);
