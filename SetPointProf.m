@@ -3,9 +3,9 @@ close all
 
 s = 10000; % sigma
 
-    P = tf([1 1],[1 1 1 ]);
-    Ps = ss(P);
-    
+P = tf([1 1],[1 1 1 ]);
+Ps = ss(P);
+
 A = Ps.A;
 B = Ps.B;
 C = Ps.C;
@@ -17,7 +17,9 @@ Q = G' *1* G;
 R = 1;
 x0 = [0 0 ]';
 
-Kc = lqr(A,B,C'*C,R)
+% Kc = lqr(A,B,C'*C,R); il prof aveva messo Q poi si trovava uno 0 in kc e ha
+% cambiato mettendo C'* C al posto di Q
+Kc = lqr(A,B,C'*C,R);
 L = ss(A,B,Kc,0); %Sistema con Feedback di stato
 
 inversa = [A B; C H]\[0 0 1]';

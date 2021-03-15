@@ -3,11 +3,7 @@ close all
 
 gamma = 1;
 rho = 1;
-<<<<<<< Updated upstream
-s = 10^15; % sigma
-=======
 s = 10; % sigma
->>>>>>> Stashed changes
 
 A = [0 1 0; 0 -.875 -20; 0 0 -50];
 B = [0 0 50]';
