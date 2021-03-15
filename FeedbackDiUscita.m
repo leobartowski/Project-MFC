@@ -3,7 +3,7 @@ close all
 
 gamma = 1;
 rho = 1;
-s = 10^35; % sigma
+s = 10^15; % sigma
 
 A = [0 1 0; 0 -.875 -20; 0 0 -50];
 B = [0 0 50]';
@@ -30,12 +30,10 @@ Rf = 1;
 Qf = s * 1;
 Kf = lqe(A,Bbar,C,Qf,Rf);
 
-Ak = A-Kf*C-B*Kc;
-
-K = ss(Ak,Kf,-Kc,0); %Sistema con output feedback
-L0 = Ps * K;
-L0 = minreal(L0);
+K = ss(A-B*Kc-Kf*C,Kf,-Kc,0); %Sistema con output feedback
+LOss = Ps * K;
+LOss = minreal(LOss);
 
 % sigma(L,K*Ps)
 % figure, impulse(L, L0)
-% figure, bode(L, L0)
+bode(L, LOss)

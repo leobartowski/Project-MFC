@@ -1,8 +1,9 @@
+
 clearvars;
 close all
 
 rho = 1;
-s = 10^35; % sigma
+s = 10^15; % sigma
 
 A = [0 1 0; 0 -.875 -20; 0 0 -50];
 B = [0 0 50]';
@@ -23,21 +24,18 @@ Rc = H'* H + rho;
 Kc = lqr(A,B,Qc,Rc);
 L = ss(A,B,Kc,0); %Sistema con Feedback di stato
 
-inversa = inv([A B; G H]);
-inversa = inversa * [0 0 0 1]';
+% inversa = inv([A B; G H]);
+inversa = [A B; G H] \ [0 0 0 1]';
 F = inversa(1:3);
 N = inversa(end);
 
 %% Output Feedback con SetPoint
-L = ss(A,B,Kc,0); %Sistema con Feedback di stato
 
 Bbar = B;
 Rf = 1;
 Qf = s * 1;
 Kf = lqe(A,Bbar,C,Qf,Rf);
 
-Ak = A-Kf*C-B*Kc;
-
-K = ss(Ak,Kf,-Kc,0); %Sistema con output feedback
-L0 = Ps * K;
+K = ss(A-Kf*C-B*Kc,Kf,-Kc,0); %Sistema con output feedback
+L0 = K * Ps;
 L0 = minreal(L0);
