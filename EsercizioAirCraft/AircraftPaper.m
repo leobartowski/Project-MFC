@@ -6,15 +6,16 @@ B = [0.0729 0; -4.7500 0.00775; 0.153 0.143; 0 0];
 C = [1 0 0 0; 0 0 0 1];
 D = [0 0; 0 0];
 
-x0 = [0 0 0 pi/2];
+x0 = [pi/6 0 0 pi/4];
 
 Ps = ss(A,B,C,D);
 % figure, impulse(P,20)
 
-Qbar = 1; % Se Qbar è alto gli stati vanno a 0 prima e pago il controllo, e viceversa se è basso
-rho = 1;
+Qbar = 10000*eye(2); % Se Qbar è alto gli stati vanno a 0 prima e pago il controllo, e viceversa se è basso
 Q = C' * Qbar * C; 
-R = rho;
+rho = 1;
+Rbar = eye(2);
+R = rho*Rbar;
 
 Ccal = ctrb(A,B);
 Ocal = obsv(A,C);
