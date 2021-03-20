@@ -31,13 +31,15 @@ L = ss(A,B,Kc,0);
 
 Bbar = B;
 Rf = eye(2);
-s = 10; % sigma
+s = 1e10; % sigma
 Qf = eye(2) * s;
 
 Kf = lqe(A, Bbar, C, Qf, Rf);
-K = ss(A-B*Kc-Kf*C,Kf,-Kc,0); %Sistema con output feedback
+K = ss(A-B*Kc-Kf*C,Kf,-Kc,0);%Controllore output feedback
+Kset = ss(A-B*Kc-Kf*C,Kf,Kc,0); %Controllore output feedback con setPoint, non deve esserci il meno a Kc (vedi pg 234 Hespanha)
 LOss = Ps * K;
 LOss = minreal(LOss);
+
 
 % bodemag(L, LOss), legend('L', 'Loss');
 
