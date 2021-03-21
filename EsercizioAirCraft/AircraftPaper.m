@@ -7,7 +7,7 @@ C = [1 0 0 0; 0 0 0 1];
 D = [0 0; 0 0];
 
 x0 = [pi/6 0 0 pi/4];
-
+%x0 = [0 0 0 0];
 Ps = ss(A,B,C,D);
 % figure, impulse(P,20)
 
@@ -40,9 +40,10 @@ Kset = ss(A-B*Kc-Kf*C,Kf,Kc,0); %Controllore output feedback con setPoint, non d
 LOss = Ps * K;
 LOss = minreal(LOss);
 
+% bodemag(L, LOss), legend('L', 'Loss'); %Diagramma di bode solo dei moduli
 
-% bodemag(L, LOss), legend('L', 'Loss');
-
-inversa = [A B; C D] \ [0 0 0 0 1 1]';
+inversa = [A B; C D] \ [0 0 0 0 0 1]'; % Cosi porto a riferimento solo il roll angle 
+% inversa = [A B; C D] \ [0 0 0 0 1 0]'; % Cosi porto a riferimento solo il sideslip angle  
+% inversa = [A B; C D] \ [0 0 0 0 1 1]'; % Cosi porto a riferimento sia il sideslip che il roll angle 
 F = inversa(1:4);
 N = inversa(5:6);
