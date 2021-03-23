@@ -38,5 +38,6 @@ Kf = lqe(A,Bbar,C,Qf,Rf);
 % Kf = lqr(A',C',C'*C,Rf)';
 
 K = ss(A-Kf*C-B*Kc,Kf,-Kc,0); %Sistema con output feedback
+Kset = ss(A-Kf*C-B*Kc,Kf,Kc,0); %Controllore per il setPoint con output feedback
 L0 = K * Ps;
 L0 = minreal(L0);

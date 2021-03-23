@@ -1,0 +1,63 @@
+#VRML V2.0 utf8
+# Copyright 2015 The MathWorks, Inc.
+
+NavigationInfo {
+  visibilityLimit 20000
+  type [
+    "FLY" 
+    "ANY" 
+  ]
+  speed 10
+}
+PointLight {
+  radius 5000
+  location 0 16000 0
+  intensity 0.1
+  attenuation 0 0 1
+}
+Background {
+  skyColor [
+    0.76238 0.8 0.1427,
+    0.277798 0.219779 0.7,
+    0.222549 0.390234 0.7,
+    0.60094 0.662637 0.69 
+  ]
+  skyAngle [0.1, 1.2, 1.57]
+  groundColor [
+    0.2 0.8 1,
+    0 0.8 1,
+    0 0.6 0.6,
+    0 0.8 0.8 
+  ]
+  groundAngle [0, 0, 0]
+}
+DEF CameraFixed Transform {
+  translation -12070 3048 0
+  children Viewpoint {
+    description "Fixed Position"
+    position -130 15 -80
+    orientation 0 -1 0 2.04204
+    fieldOfView 0.4
+  }
+}
+DEF CameraRear Transform {
+  translation -12070 3048 0
+  children Viewpoint {
+    description "Rear Position"
+    position -130 15 -10
+    orientation 0 -1 0 1.5708
+  }
+}
+DEF HL20 Transform {
+  translation -12070 3048 0
+  children Transform {
+    translation 10 -6 -17
+    scale 5 5 5
+    rotation 0 1 0 3.16
+    children Inline {
+      url "aeroblk_HL20_model.wrl" 
+    }
+  }
+}
+ROUTE HL20.translation TO CameraFixed.translation
+ROUTE HL20.translation TO CameraRear.translation
