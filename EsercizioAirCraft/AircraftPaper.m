@@ -12,7 +12,7 @@ x0 = [deg2rad(5) 0 0 deg2rad(30)];
 Ps = ss(A,B,C,D);
 % figure, impulse(P,20)
 
-Qbar = 10000*eye(2); % Se Qbar è alto gli stati vanno a 0 prima e pago il controllo, e viceversa se è basso
+Qbar = 100*eye(2); % Se Qbar è alto gli stati vanno a 0 prima e pago il controllo, e viceversa se è basso
 % Qbar = [1/(deg2rad(10)^2) 0; 0 1/(deg2rad(80)^2)];
 Q = C' * Qbar * C; 
 rho = 1;
@@ -32,7 +32,7 @@ L = ss(A,B,Kc,0);
 
 Bbar = B;
 Rf = eye(2);
-s = 1e20; % sigma
+s = 1e10; % sigma
 Qf = eye(2) * s;
 
 Kf = lqe(A, Bbar, C, Qf, Rf);
@@ -42,7 +42,7 @@ LOss = Ps * K;
 LOss = minreal(LOss);
 
 % bodemag(L, LOss), legend('L', 'Loss'); % Diagramma di bode solo dei moduli
-% figure, sigma(L,LOss), legend('L', 'Loss');
+figure, sigma(L,LOss), legend('L', 'Loss');
 
 inversa = [A B; C D] \ [0 0 0 0 0 1]'; % Cosi porto a riferimento solo il roll angle 
 % inversa = [A B; C D] \ [0 0 0 0 1 0]'; % Cosi porto a riferimento solo il sideslip angle  
