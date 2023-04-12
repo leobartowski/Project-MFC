@@ -1,4 +1,4 @@
-# Multivariable Feedback Control Projecy
+# Multivariable Feedback Control Project
 
 This repo contains a robust controller for the lateral flight dynamics of an aircraft. 
 <br><br>
