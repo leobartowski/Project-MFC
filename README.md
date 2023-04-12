@@ -10,3 +10,5 @@ The realized systems are:
 - a controller and an estimator with set point
 
 
+The mathematical details and implementation are explained in this [paper](Tesina.pdf) (ITALIAN).
+
